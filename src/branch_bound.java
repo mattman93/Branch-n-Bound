@@ -85,6 +85,7 @@ public class branch_bound {
 		               rowT = rowItems.get(0) + rowItems.get(1);
 			           System.out.println(rowItems.get(0) + " + " + rowItems.get(1));
 		               }
+		               
                totl += rowT;
                rowItems.clear();
             }
