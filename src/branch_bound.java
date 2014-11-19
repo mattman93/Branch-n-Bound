@@ -18,6 +18,8 @@ public class branch_bound {
             tour.add(0);
             tour.add(1);
             tour.add(2);
+            //tour.add(3);
+         
             
            
             System.out.println("tour size: " + tour.size());
@@ -72,27 +74,45 @@ public class branch_bound {
                 
                 }
                 		Collections.sort(rowItems);
-               
-		               if(i < constraints.size()-1){
-		                  rowConstraint = costs[(int)constraints.get(i)][(int)constraints.get(i+1)];
-		                  rowT = rowConstraint + rowItems.get(0); 	
-		                  System.out.println(rowConstraint + " + " + rowItems.get(0));
-		               } else if(i == constraints.size() -1) {
-		            	   rowConstraint = costs[(int)constraints.get(constraints.size()-1)][(int)constraints.get(constraints.size()-2)];
-			               rowT = rowConstraint + rowItems.get(0);
-			               System.out.println(rowConstraint + " + " + rowItems.get(0));
-		               } else {
-		               rowT = rowItems.get(0) + rowItems.get(1);
-			           System.out.println(rowItems.get(0) + " + " + rowItems.get(1));
-		               }
-		               
+               //only works if tour is linear  -__-
+               //need "rowContainsConstraint" method
+                	
+                		//now checks if row has a constraint
+                		if(i < constraints.size() - 1){
+                		if(rowContainsConst(i, constraints)){
+                			int ind = constraints.indexOf(i);
+                			
+                			
+                			rowConstraint = costs[(int)constraints.get(ind)][(int)constraints.get(ind + 1)];
+                			if(rowConstraint == rowItems.get(0)){
+                				rowT = rowConstraint + rowItems.get(1); 
+                			} else {
+                				rowT = rowConstraint + rowItems.get(0); 
+                			}
+                				
+                			 System.out.println(rowConstraint + " + " + rowItems.get(0));
+                		} 
+           
+                		}else {
+                			
+                			rowT = rowItems.get(0) + rowItems.get(1);
+                  			 System.out.println(rowItems.get(0) + " + " + rowItems.get(1));
+                  			
+                       		}
                totl += rowT;
                rowItems.clear();
             }
             System.out.println(totl/2);
         }
     }
-     
+     public boolean rowContainsConst(int row,ArrayList constraints){
+    	 if(constraints.contains(row)){
+    		 return true;
+    	 } else {
+    		 return false;
+    	 }
+    	 
+     }
     public void init_matrix()
     {
          costs = new double[][]
