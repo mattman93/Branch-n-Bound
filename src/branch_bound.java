@@ -18,7 +18,6 @@ public class branch_bound {
             tour.add(0);
             tour.add(1);
             tour.add(2);
-            //tour.add(3);
          
             
            
@@ -113,6 +112,7 @@ public class branch_bound {
     	 }
     	 
      }
+
     public void init_matrix()
     {
          costs = new double[][]
