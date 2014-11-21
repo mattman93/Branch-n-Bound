@@ -18,6 +18,7 @@ public class branch_bound {
             tour.add(0);
             tour.add(1);
             tour.add(2);
+          //  tour.add(3);
          
             
            
@@ -81,19 +82,30 @@ public class branch_bound {
                 		if(rowContainsConst(i, constraints)){
                 			int ind = constraints.indexOf(i);
                 			
-                			
+                			if(i == 0){
                 			rowConstraint = costs[(int)constraints.get(ind)][(int)constraints.get(ind + 1)];
                 			if(rowConstraint == rowItems.get(0)){
-                				rowT = rowConstraint + rowItems.get(1); 
+                				rowT = rowConstraint + rowItems.get(1);
+                				 System.out.println(rowConstraint + " + " + rowItems.get(1));
                 			} else {
                 				rowT = rowConstraint + rowItems.get(0); 
-                			}
-                				
-                			 System.out.println(rowConstraint + " + " + rowItems.get(0));
-                		} 
-           
-                		}else {
+                				 System.out.println(rowConstraint + " + " + rowItems.get(0));
+                				}
                 			
+                			} else {
+                				double rc1= 0;
+                				double rc2 = 0;
+                				rc1 = costs[(int)constraints.get(ind)][(int)constraints.get(ind + 1)];
+                				rc2 = costs[(int)constraints.get(ind)][(int)constraints.get(ind-1)];
+                				rowT = rc1 + rc2;
+                				 System.out.println(rc1 + " + " + rc2 + " two const's");
+		                				
+		                			}
+                				
+                			} 
+           
+                		}
+                		else if(i >= constraints.size()-1){
                 			rowT = rowItems.get(0) + rowItems.get(1);
                   			 System.out.println(rowItems.get(0) + " + " + rowItems.get(1));
                   			
@@ -112,7 +124,6 @@ public class branch_bound {
     	 }
     	 
      }
-
     public void init_matrix()
     {
          costs = new double[][]
