@@ -18,7 +18,7 @@ public class branch_bound {
             tour.add(0);
             tour.add(1);
             tour.add(2);
-          //  tour.add(3);
+            tour.add(3);
          
             
            
@@ -106,8 +106,15 @@ public class branch_bound {
            
                 		} else if(i == constraints.size()-1){
                 			double rc =  costs[(int)constraints.get(constraints.size()-1)][(int)constraints.get(constraints.size()-2)];
-                			rowT = rc + rowItems.get(0);
-                			System.out.println(rc + " + " + rowItems.get(0));
+   
+                			if(rc == rowItems.get(0)){
+                				rowT = rc + rowItems.get(1);
+                				 System.out.println(rc + " + " + rowItems.get(1));
+                			} else {
+                				rowT = rc + rowItems.get(0); 
+                				 System.out.println(rc + " + " + rowItems.get(0));
+                				}
+                			
                 		}
                 		else if(i > constraints.size()-1){
                 			rowT = rowItems.get(0) + rowItems.get(1);
