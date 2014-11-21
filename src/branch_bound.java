@@ -16,9 +16,9 @@ public class branch_bound {
             branch_bound bb = new branch_bound();
             bb.init_matrix();
             tour.add(0);
-            tour.add(1);
-            tour.add(2);
-            tour.add(3);
+            tour.add(4);
+           // tour.add(2);
+           // tour.add(3);
          
             
            
@@ -105,20 +105,43 @@ public class branch_bound {
                 		} 
            
                 		} else if(i == constraints.size()-1){
-                			double rc =  costs[(int)constraints.get(constraints.size()-1)][(int)constraints.get(constraints.size()-2)];
+                			if(rowContainsConst(i, constraints)){
+                				
+                			
+                			double rc = costs[(int)constraints.get(constraints.size()-1)][(int)constraints.get(constraints.size()-2)];
    
                 			if(rc == rowItems.get(0)){
                 				rowT = rc + rowItems.get(1);
-                				 System.out.println(rc + " + " + rowItems.get(1));
+                				 System.out.println(rc + " + " + rowItems.get(1) + " cheese 1 ");
                 			} else {
                 				rowT = rc + rowItems.get(0); 
-                				 System.out.println(rc + " + " + rowItems.get(0));
+                				 System.out.println(rc + " + " + rowItems.get(0) + " cheese 2");
                 				}
+                			} else {
+                				rowT = rowItems.get(0) + rowItems.get(1);
+                     			 System.out.println(rowItems.get(0) + " + " + rowItems.get(1) + " poop-toucher 1");
+                     			
+                			}
                 			
                 		}
                 		else if(i > constraints.size()-1){
-                			rowT = rowItems.get(0) + rowItems.get(1);
-                  			 System.out.println(rowItems.get(0) + " + " + rowItems.get(1));
+                			if(rowContainsConst(i, constraints)){
+                				
+                    			
+                    			double rc = costs[(int)constraints.get(constraints.size()-1)][(int)constraints.get(constraints.size()-2)];
+       
+                    			if(rc == rowItems.get(0)){
+                    				rowT = rc + rowItems.get(1);
+                    				 System.out.println(rc + " + " + rowItems.get(1) + " cheese 1 ");
+                    			} else {
+                    				rowT = rc + rowItems.get(0); 
+                    				 System.out.println(rc + " + " + rowItems.get(0) + " cheese 2");
+                    				}
+                    			} else {
+                    				rowT = rowItems.get(0) + rowItems.get(1);
+                         			 System.out.println(rowItems.get(0) + " + " + rowItems.get(1) + " poop-toucher 2 ");
+                         			
+                    			}
                   			
                        		}
                totl += rowT;
