@@ -99,13 +99,17 @@ public class branch_bound {
                 				rc2 = costs[(int)constraints.get(ind)][(int)constraints.get(ind-1)];
                 				rowT = rc1 + rc2;
                 				 System.out.println(rc1 + " + " + rc2 + " two const's");
-		                				
-		                			}
                 				
-                			} 
+                			}
+                				
+                		} 
            
+                		} else if(i == constraints.size()-1){
+                			double rc =  costs[(int)constraints.get(constraints.size()-1)][(int)constraints.get(constraints.size()-2)];
+                			rowT = rc + rowItems.get(0);
+                			System.out.println(rc + " + " + rowItems.get(0));
                 		}
-                		else if(i >= constraints.size()-1){
+                		else if(i > constraints.size()-1){
                 			rowT = rowItems.get(0) + rowItems.get(1);
                   			 System.out.println(rowItems.get(0) + " + " + rowItems.get(1));
                   			
